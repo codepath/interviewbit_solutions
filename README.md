@@ -7,4 +7,4 @@ Solutions to select interviewbit problems. See folders for solutions.
  * Week 3: Trees, Binary Trees, Searches, Heaps
  * Week 4: Recursion and Bit Manipulation
  
- Each week has 6 challenges with solutions available in the folder. 
+Each week has 6 challenges with solutions available in the folder. 
