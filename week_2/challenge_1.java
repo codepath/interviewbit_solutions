@@ -1,2 +1,11 @@
 // Implement a Linked List
-// No solution yet (contribute one?)
+
+class Node {
+    Object data;
+    Node next;
+
+    Node(Object value) {
+        data = value;
+        next = null;
+    }
+}
