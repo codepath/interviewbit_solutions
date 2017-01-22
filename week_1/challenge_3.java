@@ -1,4 +1,4 @@
-// Spiral Order Matrix IBookmark Suggest Edit
+// Spiral Order Matrix
 // https://www.interviewbit.com/problems/spiral-order-matrix-i/
 public class Solution {
 	// DO NOT MODIFY THE LIST
