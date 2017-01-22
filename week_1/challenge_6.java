@@ -7,7 +7,7 @@ public class Solution {
 	        return "";
 	        
 	    String str;
-	    String res = "";
+	    StringBuffer prefix = new StringBuffer();
 	    int min = Integer.MAX_VALUE;
 	    
 	    for (int i = 0; i < A.size(); i++) {
@@ -21,15 +21,14 @@ public class Solution {
 	        for (int j = 1; j < A.size(); j++) {
 	            
 	            if (c != A.get(j).charAt(i))
-	                return res;
-	                
+	                return prefix.toString();
 	        }
 	        
-	        res += c;
+	        prefix.append(c);
 	        
 	    }
 	    
-	    return res;
+	    return prefix.toString();
 	    
 	}
 }
