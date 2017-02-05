@@ -1,6 +1,4 @@
 // Hash table word count
-// No solution yet (contribute one?)
-
 public class Solution {
   public HashMap<String, Integer> wordCount(String s) {
     s = s.replaceAll("^[a-zA-Z]", " ").toLowerCase();
