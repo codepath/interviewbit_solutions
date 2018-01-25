@@ -1,33 +1,53 @@
-// Evaluate the value of an arithmetic expression in Reverse Polish Notation.
-
+// Level order
+// https://www.interviewbit.com/problems/level-order/
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
 public class Solution {
-    public int evalRPN(ArrayList<String> arr) {
-        if (arr == null || arr.size() == 0) {
-            return 0;
-        } if (arr.size() == 1) {
-            return Integer.parseInt(arr.get(0));
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode A) {
+
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+
+        if (A == null) {
+            return res;
         }
-        
-        Stack<String> stack = new Stack<>();
-        for (int i = 0; i < arr.size(); i++) {
-            String temp = arr.get(i);
-            if (!(temp.equals("+") || temp.equals("-") || temp.equals("*") || temp.equals("/"))) {
-                stack.push(temp);
-            } else { 
-                int b = Integer.parseInt(stack.pop());
-                int a = Integer.parseInt(stack.pop());
-                if (temp.equals("+")) {
-                    stack.push(Integer.toString(a + b));
-                } else if (temp.equals("-")) {
-                    stack.push(Integer.toString(a - b));
-                } else if (temp.equals("*")) {
-                    stack.push(Integer.toString(a * b));
-                } else if (temp.equals("/")) {
-                    stack.push(Integer.toString(a / b));
-                }
+
+        ArrayList<Integer> level = new ArrayList<Integer>();
+        Queue<TreeNode> qCurrLevel = new LinkedList<TreeNode>();
+        Queue<TreeNode> qNextLevel = new LinkedList<TreeNode>();
+        qCurrLevel.add(A);
+
+        while (!qCurrLevel.isEmpty()) {
+
+            TreeNode node = qCurrLevel.remove();
+
+            if (node.left != null) {
+                qNextLevel.add(node.left);
+            }
+
+            if (node.right != null) {
+                qNextLevel.add(node.right);
+            }
+
+            level.add(node.val);
+            if (qCurrLevel.isEmpty()) {
+                qCurrLevel = qNextLevel;
+                qNextLevel = new LinkedList<TreeNode>();
+                res.add(level);
+                level = new ArrayList<Integer>();
             }
         }
-        
-        return Integer.parseInt(stack.pop());
+
+        return res;
     }
 }
