@@ -47,21 +47,27 @@ public class Solution {
 
 		int maxLen = 0;
 
-		while( l<= r &&  r  < input.length()) {
-			Character c = input.charAt(r);
+		// optional: keep track of the substring with max length
+		// String str = "";
+
+		while(r < A.length()) {
+			Character c = A.charAt(r);
 			if(map.contains(c)) {
-				// Is the substring longer?
-				maxLen = Math.max(maxLen, r-l);
-				// keep shrinking window until you can remove
-				// the duplicate character from the map
-				while(l <= r && input.charAt(l) != c) {
-					map.remove(input.charAt(l));
-					l++;
-				}
+				// remove duplicate character from the map
+				map.remove(A.charAt(l));
+				// shrink window
+				l++;
 			} else {
-				// increase the window
+				// add character to the map
 				map.add(c);
+				// increase the window
 				r++;
+				// optional: update with the substring with max length
+				// if (r - l > maxLen) {
+				// 	str = A.substring(l, r);
+				// }
+				// is the substring longer?
+				maxLen = Math.max(maxLen, r - l);
 			}
 		}
 
