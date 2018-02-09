@@ -1,26 +1,50 @@
-// Prime Numbers
-// https://www.interviewbit.com/problems/prime-numbers/
+// Add two numbers
+// https://www.interviewbit.com/problems/add-two-numbers-as-lists/
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
 public class Solution {
-	public ArrayList<Integer> sieve(int A) {
-	    boolean prime [] = new boolean[A + 1];
-	    Arrays.fill(prime, true);
-	    prime[0] = prime[1] = false;
-	    
-	    for (int i = 2; i <= A; i++) {
-	        if (!prime[i])
-	            continue;
-	            
-	        for (long j = 1L * i * i; j <= (long) A; j += i)
-	            prime[(int) j] = false;
+	public ListNode addTwoNumbers(ListNode A, ListNode B) {
+	    ListNode node;
+	    ListNode prev = null;
+	    ListNode first = null;
+	    int carry = 0;
+	    int sum = 0;
+
+	    while (A != null || B != null || carry != 0) {
+
+	        node = new ListNode(0);
+	        sum = carry;
+
+	        if (first == null)
+	            first = node;
+
+	        if (prev != null)
+	            prev.next = node;
+
+	        if (A != null) {
+	            sum += A.val;
+	            A = A.next;
+	        }
+
+	        if (B != null) {
+	            sum += B.val;
+	            B = B.next;
+	        }
+
+	        node.val = sum % 10;
+
+	        sum /= 10;
+	        carry = sum;
+	        prev = node;
 	    }
-	    
-	    ArrayList<Integer> res = new ArrayList<>();
-	    
-	    for (int i = 0; i <= A; i++) {
-	        if (prime[i])
-	            res.add(i);
-	    }
-	    
-	    return res;
+
+	    return first;
+
 	}
 }
